@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMAL FACTORY</title>
+    <style>
+
+        body{
+            background-color: rgb(179, 179, 179);
+        }
+        h2{
+            font-size: 5rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: black;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card1{
+            position: relative;
+            top: 0px;
+            border: 2px solid aqua;
+            margin: 0px;
+            height: 200px;
+            width: 200px;
+
+        }
+        .imgs{
+            height: 200px;
+            width: 200px;
+            z-index: 0;
+
+        }
+        img{
+            height: 100%;
+            width: 100%;
+            opacity: 0.7;
+        }
+        .ids,.usernames{
+            z-index: 1;
+            position: relative;
+            top: -55px;
+            height: 20px;
+            overflow-x: hidden;
+            margin: 2px;
+            border: 2px solid black;
+            background-color: rgba(255, 255, 255, 0.614);
+        }
+        .imgs:hover{
+            opacity: 0.1;
+        }
+        button{
+            margin: 40px;
+
+            height: 200px;
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0);
+            border: 2px solid rgba(255, 0, 0, 0);
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h2>ANIMAL FACTORY</h2>
+    <br>
+    <div class="container">
+    <% for( user of users ) { %>
+    <form action="/user/<%= user.Id %>/edit" method="get">
+        <button>
+        <div class="card1">
+            <div class="imgs"><img src=""></div>
+            <div class="ids"><%= user.Id %></div>
+            <div class="usernames"><%= user.Username %></div>
+        </div>
+        </button>
+    </form>
+    <% } %>
+    </div>
+</body>
+<script>
+    // let imgs=document.querySelector(".imgs");
+    let imgs=document.querySelectorAll("img");
+    
+    let url="https://random.dog/woof.json";
+    async function getcat(i){
+    let res= await fetch(url);
+    let data = await res.json();
+    // res.send(data);
+    console.log(data.url);
+    i.setAttribute('src',data.url);
+}
+for (const i of imgs) {  
+    getcat(i);
+}
+
+let card=document.querySelector(".card1");
+card.addEventListener("click",function (event) {
+    
+});
+
+</script>
+</html>

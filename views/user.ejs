@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.Username %></title>
+</head>
+<body>
+    <div class="container">
+        <h2>Do you want to change your USERNAME?</h2>
+        <form action="/user/<%=user.Id%>?_method=PATCH" method="post">
+        <textarea name="username"><%=user.Username%></textarea>
+        <button>EDIT</button>
+        </form>
+    </div>
+</body>
+</html>
