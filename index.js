@@ -1,4 +1,5 @@
 // const { faker } = require('@faker-js/faker');
+const { v4: uuidv4 } = require('uuid');
 
 const express=require("express");
 const app=express();
@@ -77,6 +78,22 @@ app.patch("/user/:id",(req,res)=>{
                     res.redirect("/");
                 })
             
+    } catch (err) {
+        console.log(err);
+        res.send("some error in DB");
+    }
+});
+
+app.post("/user/new",(req,res)=>{
+    let {changename: name}=req.body;
+    // res.send(uuidv4());
+    let q3=`INSERT INTO info (Id,Username) VALUES ('${uuidv4()}','${name}')`;
+    try {
+        connection.query(q3,(err,result)=>{
+            if(err) throw err;
+            res.redirect("/");
+        })
+    
     } catch (err) {
         console.log(err);
         res.send("some error in DB");

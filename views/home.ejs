@@ -18,6 +18,17 @@
             display: flex;
             flex-wrap: wrap;
         }
+        .addcard{
+            font-size: 40px;
+            position: relative;
+            top: 0px;
+            background-color: rgb(98, 98, 98);
+            box-shadow: 0px 0px 4px 8px rgb(98, 98, 98);
+            /* border: 2px solid aqua; */
+            margin: 0px;
+            height: 200px;
+            width: 200px;
+        }
         .card1{
             position: relative;
             top: 0px;
@@ -51,7 +62,7 @@
         .imgs:hover{
             opacity: 0.1;
         }
-        button{
+        .btn{
             margin: 40px;
 
             height: 200px;
@@ -59,17 +70,31 @@
             background-color: rgba(255, 255, 255, 0);
             border: 2px solid rgba(255, 0, 0, 0);
         }
-        
-
+        .inputname,.add{
+            opacity: 0;
+        }
+        .x{
+            height: 20px;
+            
+            position: relative;
+            left: -100px;
+        }
     </style>
 </head>
 <body>
     <h2>ANIMAL FACTORY</h2>
     <br>
     <div class="container">
+    <form action="/user/new" method="post">
+        <div class="addcard">CLICK TO ADD NEW USER</div>
+        <textarea name="changename" placeholder="enter new name" class="inputname"></textarea>
+    <button class="add">ADD</button>
+    </form>
+
     <% for( user of users ) { %>
+    
     <form action="/user/<%= user.Id %>/edit" method="get">
-        <button>
+        <button class="btn">
         <div class="card1">
             <div class="imgs"><img src=""></div>
             <div class="ids"><%= user.Id %></div>
@@ -77,6 +102,7 @@
         </div>
         </button>
     </form>
+   
     <% } %>
     </div>
 </body>
@@ -101,5 +127,13 @@ card.addEventListener("click",function (event) {
     
 });
 
+let addbtn=document.querySelector(".add");
+let add=document.querySelector(".addcard");
+let inputname=document.querySelector(".inputname");
+add.addEventListener("click",function (event) {
+    inputname.style.opacity=1;
+    add.style.opacity=0;
+    addbtn.style.opacity=1;
+})
 </script>
 </html>
